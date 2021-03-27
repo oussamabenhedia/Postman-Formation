@@ -1,0 +1,163 @@
+{
+	"info": {
+		"_postman_id": "5e200b12-67bd-4884-a3d9-5394869e163e",
+		"name": "assertion",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "req 1 assertion",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//génération d'un id en random\r",
+							"var random = Math.floor(Math.random() * 10);\r",
+							"pm.globals.set('id', random);\r",
+							"\r",
+							"// retourne la minute actuelle\r",
+							"var minutes = parseInt((new Date()).getUTCMinutes());\r",
+							"console.info(\"time est= \", minutes)\r",
+							"\r",
+							"// modifier le hedear d'envoie\r",
+							"pm.request.headers.add({\r",
+							"    key: 'Content-Type',\r",
+							"    value: 'application/json'\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"/*\r",
+							"// Vérification du conde de retour avec 2 méthodes\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have\r",
+							"});\r",
+							"\r",
+							"// vérification d'une valeur d'une variable d'env\r",
+							"pm.test(\"environnement attendu\", function(){\r",
+							"    pm.expect(pm.environment.get(\"Login\")).to.equal(\"oussama\")\r",
+							"});\r",
+							"\r",
+							"// affichage du body de la réponse de API dans la consoie\r",
+							"console.info(pm.response.body())\r",
+							"\r",
+							"// faire un appel API\r",
+							"pm.sendRequest(\"https://reqres.in/api/register\", function (err, response) {\r",
+							"    console.log(response.json());\r",
+							"});\r",
+							"\r",
+							"\r",
+							"//Vérifier que le retour contient un string passé en paramètre \r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Chelsey Dietrich\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"Kamren\");\r",
+							"});\r",
+							"\r",
+							"// Vérifier que le temps de réponse est infèrieur a 200 ms\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"*/\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/users?id={{id}}",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "{{id}}"
+						},
+						{
+							"key": "date",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "req 2 assertion",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users?page=2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "req 3 assertion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"morpheus\",\r\n    \"job\": \"leader\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,49 @@
+{
+	"info": {
+		"_postman_id": "9a8051e4-013e-4143-866c-1ba05b639927",
+		"name": "Soap API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SOAP REQ",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<Envelope xmlns=\"http://www.w3.org/2003/05/soap-envelope\">\r\n    <Body>\r\n        <Multiply xmlns=\"http://tempuri.org/\">\r\n            <intA>5</intA>\r\n            <intB>3</intB>\r\n        </Multiply>\r\n    </Body>\r\n</Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://www.dneonline.com/calculator.asmx",
+					"protocol": "http",
+					"host": [
+						"www",
+						"dneonline",
+						"com"
+					],
+					"path": [
+						"calculator.asmx"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
